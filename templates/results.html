@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Search</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <div class="recipeContainer" style="display: none;">
+        <div class="recipe-results"></div>
+    </div>
+    
+    <div id="recipeModal" class="modal">
+        <span class="close-btn">&times;</span>
+        <h2 id="recipeTitle"></h2>
+        <img id="recipeImage" />
+        <ul id="recipeIngredients"></ul>
+        <p id="recipeInstructions"></p>
+    </div>
+    
+
+    <script src="{{ url_for('static', filename='script_2.js') }}"></script>
+</body>
+</html>
+
+
+
+    
