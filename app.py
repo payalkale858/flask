@@ -208,7 +208,10 @@ def show_favorites():
 
 
 
-
+@app.route('/results')
+def results():
+    ingredients = request.args.get('ingredients', '')
+    return render_template('results.html', ingredients=ingredients)
     
 @app.route('/',endpoint='home')
 def home():

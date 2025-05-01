@@ -4,14 +4,35 @@
 
 
     <div class="item" id="item3">
-        
         <div class="search">
+            <section class="search-bar">
+                <div class="main">
+                    
+                    <input type="text" id="ingredientInput" placeholder="Enter ingredients or recipe name" />
+                    
+                    <button id="searchButton"><i class="fas fa-search"></i></button>
+                </div>
+            </section>
+
+        </div>
+        <script>
+            document.getElementById("searchButton").addEventListener("click", function () {
+                const query = document.getElementById("ingredientInput").value;
+                if (query.trim() !== "") {
+                    // Redirect to results.html with query parameter
+                    window.location.href = `/results?ingredients=${encodeURIComponent(query)}`;
+
+                }
+            });
+        </script>
+
+        <!-- <div class="search">
             <section class="search-bar">
                 <input type="text" id="ingredientInput" placeholder="Enter ingredients (e.g., chicken, rice)">
                 <button id="searchButton"><i class="fas fa-search"></i></button>
             </section>
            
-        </div>
+        </div> -->
 
         <div class="image-container">
 
@@ -149,22 +170,23 @@
 </main>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 <style>
-    .state h3{
+    .state h3 {
         color: #efeee9;
-    margin-top: 92px;
-    margin-left: 94px;
-    font-size: 22px;
+        margin-top: 92px;
+        margin-left: 94px;
+        font-size: 22px;
     }
+
     .contact {
         font-size: 14px;
         display: flex;
         flex-direction: column;
     }
 
-   
+
 
     .contact i {
-        
+
         margin-right: 8px;
         /* Space between icon and text */
     }
