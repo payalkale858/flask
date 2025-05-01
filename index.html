@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .toggle-content {
+            display: none;
+            background-color: #fff;
+            padding: 5px;
+            border-top: 1px solid #ccc;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 5px 5px;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            /* max-height: 0; */
+            overflow: hidden;
+        }
+        
+        .show .toggle-content {
+            display: block;
+            max-height: 500px;
+            /* Adjust based on content height */
+            padding: 20px;
+        }
+        
+        /* .toggle-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        } */
+        
+        .toggle-content ul li {
+            list-style: none;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .arrow {
+            transition: transform 0.3s;
+        }
+        
+        .arrow i {
+            font-size: 14px;
+        }
+        
+        /* Add class for expanded content */
+        .show .toggle-content {
+            display: block;
+        }
+        
+        .show .arrow i {
+            transform: rotate(180deg);
+        }
+        
+        
+        
+        .slide h2,
+        .slide p {
+            margin-top: 10px;
+            color: #fff;
+            /* Adjust based on your design */
+        }
+        
+        .slider-container {
+            width: 800px;
+            height: 430px;
+            overflow: hidden;
+            margin: auto;
+            /* add after */
+            /* margin-bottom: 20px; */
+            /* position: relative; */
+            /* Adjust height */
+            /* display: flex; justify-content: center; align-items: center; */
+        }
+        
+        .slides {
+            display: flex;
+            width: 500vw;
+            height: 100%;
+            /* width: 500vw; height: 100vh; */
+            transition: transform 1s ease-in-out;
+        }
+        
+        .slide {
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            /* width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: bold; */
+            /* add after */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide img {
+            /* width: 50%; */
+            /* Ensures the image takes up full width */
+            max-width: 100%;
+            /* Prevents the image from exceeding its container */
+            height: 90%;
+            /* Ensures the image fills the height */
+            max-height: 100%;
+            /* Maintain aspect ratio */
+            object-fit: cover;
+            /* Properly fits image */
+            border-radius: 10px;
+            display: block;
+            /* height:50%; width: 50%; */
+            /* object-fit: cover; Ensures images scale properly without distortion */
+            /* border-radius: 10px; */
+            /* object-fit: contain; display: block; */
+        }
+        
+        .slide:nth-child(1) {
+            /* background: url('../new_2/image.png'); */
+            /* background-size: cover; */
+            background: #b7bede;
+            /* width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the container */
+            /* border-radius: 10px; */
+            display: block;
+        }
+        
+        .slide:nth-child(2) {
+            background: #2dd146;
+            display: block;
+        }
+        
+        .slide:nth-child(3) {
+            background: #3357ff;
+            display: block;
+        }
+        
+        .slide:nth-child(4) {
+            background: #ff33a8;
+            display: block;
+        }
+        
+        .slide:nth-child(5) {
+            background: #ffdf33;
+            display: block;
+        }
+        
+        /* Controls */
+        .controls {
+            background-color: #f5efef;
+            height: 30px;
+            width: 140px;
+            padding: 10px;
+            border-radius: 25px;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dots {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .dot,
+        .play-button {
+            width: 12px;
+            height: 12px;
+            background: #888;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            text-align: center;
+            line-height: 12px;
+        }
+        
+        .dot.active {
+            background: #fff;
+        }
+        
+        .play-button {
+            background: white;
+            color: black;
+            font-weight: bold;
+        }
+        
+        #item1 {
+            height: 150px;
+            width: 100%;
+            display: flex;
+            /* Enables Flexbox */
+            justify-content: center;
+            /* Centers horizontally */
+            align-items: center;
+            /* Centers vertically */
+            text-align: center;
+        }
+        
+        #item2 {
+            position: relative;
+            background-color: #db3813;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 20px;
+            /* Add this line to create space below #item2 */
+        }
+        
+        #item6 h2 {
+            text-shadow: #b7bede;
+            font-weight: 700;
+            color: #e2e3ea;
+        }
+        
+        #item6 {
+            text-align: center;
+            background-color: #709376;
+            margin-top: 40px;
+            /* Add this line to create space above #item6 */
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+        }
+        
+        #item3 {
+            background-color: #ff33a8;
+        }
+        
+        #item4 {
+            background-color: #242420;
+        }
+        
+        #item5 {
+            background-color: #7160ae;
+            text-align: center;
+            /* position: relative; */
+            width: 100%;
+            height: 200px;
+            /* Adjust as needed */
+            /* bottom: 0; */
+            /* clear: both; */
+        }</style>
+</head>
+<body>
+    <div class="item" id="item2">
+        <div class="slider-container">
+            <div class="slides">
+                <div class="slide"><img src="{{ url_for('static', filename='first_child.png') }}" alt="First Child"></div>
+                <div class="slide"><img src="{{ url_for('static', filename='child_2.png') }}" alt="child_2"></div>
+                <div class="slide"><img src="{{ url_for('static', filename='child_3.png') }}" alt="child_3"></div>
+                <div class="slide"><img src="{{ url_for('static', filename='child_4.png') }}" alt=""></div>
+                <div class="slide">Slide 5</div>
+            </div>
+            <div class="controls">
+                <div class="dots">
+                    <div class="dot active" data-slide="0"></div>
+                    <div class="dot" data-slide="1"></div>
+                    <div class="dot" data-slide="2"></div>
+                    <div class="dot" data-slide="3"></div>
+                    <div class="dot" data-slide="4"></div>
+                </div>
+                <div class="play-button">▶</div>
+            </div>
+        </div>
+    </div>
+    <script>const slides = document.querySelector(".slides");
+        const dots = document.querySelectorAll(".dot");
+        const playButton = document.querySelector(".play-button");
+        
+        let currentIndex = 0;
+        let hasPlayedOnce = false;
+        let interval;
+        let scrollThreshold = 600;
+        
+        function updateSlide(index) {
+            slides.style.transform = `translateX(-${index * 100}vw)`;
+            dots.forEach(dot => dot.classList.remove("active"));
+            dots[index].classList.add("active");
+        }
+         // Trigger slider after scrolling 300px
+         window.addEventListener("scroll", function () {
+            let scrollPosition = window.scrollY || document.documentElement.scrollTop;
+            if (scrollPosition > scrollThreshold && !hasStarted) {
+                startAutoSlide();
+            }
+        });
+        
+        function playSlides() {
+            if (hasPlayedOnce) return; // Prevents autoplay after first time
+            interval = setInterval(() => {
+                if (currentIndex < 4) {
+                    currentIndex++;
+                    updateSlide(currentIndex);
+                } else {
+                    clearInterval(interval);
+                    hasPlayedOnce = true;
+                    playButton.textContent = "⟳"; // Change to restart icon
+                }
+            }, 2000);
+        }
+        
+        function restartSlides() {
+            if (hasPlayedOnce) {
+                currentIndex = 0;
+                updateSlide(currentIndex);
+                hasPlayedOnce = false;
+                playButton.textContent = "▶";
+                playSlides();
+            }
+        }
+        
+        dots.forEach(dot => {
+            dot.addEventListener("click", () => {
+                clearInterval(interval);
+                currentIndex = parseInt(dot.dataset.slide);
+                updateSlide(currentIndex);
+            });
+        });
+        
+        playButton.addEventListener("click", restartSlides);
+        
+        // Auto-play once when page loads
+        window.onload = playSlides;
+        function toggleContent() {
+            let content = document.querySelector(".toggle-content");
+            let arrow = document.querySelector(".arrow i"); // Select the <i> inside .arrow
+        
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                arrow.classList.remove("fa-angle-double-down");
+                arrow.classList.add("fa-angle-double-up"); // Show upward arrow when closed
+            } else {
+                content.style.display = "block";
+                arrow.classList.remove("fa-angle-double-up");
+                arrow.classList.add("fa-angle-double-down"); // Show downward arrow when open
+            }
+        }</script>
+</body>
+</html>

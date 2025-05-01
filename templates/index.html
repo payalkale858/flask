@@ -1,0 +1,832 @@
+{% extends 'base.html' %}
+{% block content %}
+<main>
+
+
+    <div class="item" id="item3">
+        
+        <div class="search">
+            <section class="search-bar">
+                <input type="text" id="ingredientInput" placeholder="Enter ingredients (e.g., chicken, rice)">
+                <button id="searchButton"><i class="fas fa-search"></i></button>
+            </section>
+           
+        </div>
+
+        <div class="image-container">
+
+            <div class="image"><img src="{{ url_for('static', filename='image copy 4.png') }}" alt="First Child">
+                <div class="image-text">
+                    <div class="hea">Welcome to the Home of Recipes!
+                        <br>
+                        <h3>Find the perfect recipe to match your mood</h3>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="item" id="item2">
+
+            <h1>Discover Delicious Vegetarian Recipes</h1>
+
+            <div class="slider-container">
+
+                <div class="slides">
+                    <div class="slide"><img src="{{ url_for('static', filename='first_child.png') }}" alt="First Child">
+                        <div class="adva">
+                            <h2 id="hh">Health Benefits</h2>
+                            <h3>
+                                <div class="ad1">Rich in vitamins</div>
+                                <div class="ad2">minerals</div>
+                                <div class="ad3">fiber </div>
+                                <div class="ad4">and antioxidants</div>
+                            </h3>
+                            <div class="ad5">
+                                <h3>vegetables</h3>
+                            </div>
+
+                            <div class="ad7">
+                                <h3>grains</h3>
+                            </div>
+                            <div class="ad9">
+                                <h3>Lower in saturated fats and cholesterol</h3>
+                            </div>
+                            <!-- <div class="ad11">
+                                <h3>supporting heart health and reducing the risk of chronic diseases like diabetes and
+                                    hypertension.</h3>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <div class="slide" id="one"><img src="{{ url_for('static', filename='child_2.png') }}"
+                            alt="child_2">
+                        <div class="advath">
+                            <div class="time">Time-Saving </div>
+                            <div class="heading">
+                                <h3> Quickly find recipes based on ingredients you already have,</h3>
+                                <h3> reducing meal planning stress.</h3>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="slide"><img src="{{ url_for('static', filename='child_3.png') }}" alt="child_3">
+                        <div class="advaone">
+                            <div class="state">
+                                <h2>Delicious & Versatile</h2>
+
+                                <h3>Create delightful desserts that satisfy cravings while nourishing your body,<br>
+                                    crafted for every skill level.</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide"><img src="{{ url_for('static', filename='child_4.png') }}" alt="child_4">
+                        <div class="advatwo">
+                            <div class="veg">
+                                <h2>Why Go Vegetarian!</h2>
+                            </div>
+                            <h3>Save time with recipes using what’s in your pantry.
+                                <br>Enjoy health benefits and a sustainable lifestyle.
+                            </h3>
+
+                        </div>
+
+                    </div>
+                    <div class="slide"><img src="{{ url_for('static', filename='image copy 3.png') }}" alt="child5">
+                        <div class="advafour">
+                            <h3>spiced flavors, <br>packed with protein and comfort for any meal.</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <div class="dots">
+                        <div class="dot active" data-slide="0"></div>
+                        <div class="dot" data-slide="1"></div>
+                        <div class="dot" data-slide="2"></div>
+                        <div class="dot" data-slide="3"></div>
+                        <div class="dot" data-slide="4"></div>
+                    </div>
+
+                </div>
+                <div class="cont">
+
+                    <div class="play-button">▶</div>
+                </div>
+            </div>
+        </div>
+        <div class="item" id="item6">
+
+            <div class="image-cont">
+                <div class="ima"><img src="{{ url_for('static', filename='image copy 9.png') }}" alt="child5">
+                    <div class="advafiv">
+                        <h4>WHAT DO WE DO?</h4>
+                        <h2 id="hh2">"Flavorful Creation Cookbook"!</h2>
+                        <p>Dive into our extensive collection of diverse recipes from around the globe,<br> spanning
+                            cuisines, <br>
+                            dietary preferences, and culinary skill levels, <br> to satisfy every palate and culinary
+                            craving.</p>
+                        <h3>✔ Explore Gastronomic Adventure <br>
+                            ✔ Nutrition Information and Dietary Options <br>
+                            ✔ Plan Your Culinary Adventures</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" id="item5">
+            <div class="name">
+                <h2>Payal Kale</h2>
+            </div>
+            <div class="logof">
+                <img src="{{ url_for('static', filename='image copy 12.png') }}" alt="child5">
+            </div>
+            <div class="contact">
+                <a><i class="fa-solid fa-location-dot"></i> At Umarkhed, Yavatmal, Maharashtra - 445206</a>
+                <a href="mailto:kalepayal53@gmail.com"><i class="fa-solid fa-envelope"></i> kalepayal53@gmail.com</a>
+                <a href="tel:+919665595439"><i class="fa-solid fa-phone"></i> +91 96655 95439</a>
+            </div>
+</main>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<style>
+    .state h3{
+        color: #efeee9;
+    margin-top: 92px;
+    margin-left: 94px;
+    font-size: 22px;
+    }
+    .contact {
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+    }
+
+   
+
+    .contact i {
+        
+        margin-right: 8px;
+        /* Space between icon and text */
+    }
+
+    .contact a {
+        margin-bottom: 10px;
+        text-decoration: none;
+        color: black;
+    }
+
+    .contact a:hover {
+        color: #ddd;
+        /* Subtle hover effect */
+    }
+
+    .name {
+        font-size: 30px;
+    }
+
+    .logof img {
+        filter: contrast(1.2) brightness(1.1);
+        mix-blend-mode: multiply;
+
+        height: 174px;
+    }
+
+    #item5 {
+        justify-content: center;
+        align-items: center;
+        gap: 255px;
+        display: flex;
+        height: 168px;
+        background-color: #e19d38;
+
+    }
+
+    .ima img {
+        position: absolute;
+
+        left: 570px;
+        border-radius: 20px;
+        width: 548px;
+        height: 500px;
+        object-fit: cover;
+        display: block;
+        margin: 0;
+        padding: 0;
+
+    }
+
+    .search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background: #f0d23d;
+        /* Yellow background */
+        border-radius: 25px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        /* 3D shadow effect */
+        /* overflow: hidden; */
+        height: 35px;
+        /* Fixed height for consistency */
+        padding: 10px;
+        width: 370px;
+    }
+
+    .search-bar input {
+        flex: 1;
+        padding: 10px 40px 10px 15px;
+        /* Space for icon on right */
+        border: none;
+        outline: none;
+        font-size: 16px;
+        background: #ffffff;
+        /* White input area */
+        border-radius: 25px 0 0 25px;
+        color: #333;
+    }
+
+    .search-bar input::placeholder {
+        color: #999;
+        /* Gray placeholder */
+    }
+
+    .search-bar i.fas {
+
+        position: absolute;
+        right: 3px;
+        top: 17px;
+        font-size: 22px;
+        color: #333;
+    }
+
+    .search {
+        top: 412px;
+        left: 404px;
+        position: absolute;
+        z-index: 6;
+
+    }
+
+    .hea {
+        font: 800px;
+        font-size: 57px;
+    }
+
+    .hea h3 {
+        font-size: 28px;
+    }
+
+    .image-container {
+        position: relative;
+        width: 1220px;
+        height: 430px;
+
+        border-radius: 20px;
+        overflow: hidden;
+        /* Ensure content stays within rounded corners */
+    }
+
+    #item6 {
+        height: 530px;
+    }
+
+    .image-cont {
+        position: relative;
+        width: 1180px;
+        height: 500px;
+
+        border-radius: 20px;
+        overflow: hidden;
+        /* Ensure content stays within rounded corners */
+    }
+
+    .image-text {
+        position: absolute;
+        top: 50%;
+        /* Center vertically */
+        left: 50%;
+        /* Center horizontally */
+        transform: translate(-50%, -50%);
+        /* Adjust for exact centering */
+        color: #ffffff;
+        /* White text for contrast */
+        font-size: 40px;
+        /* Adjust size as needed */
+        font-weight: 700;
+        /* Bold text */
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+        /* Shadow for readability */
+        z-index: 5;
+        /* Ensure text is above image */
+        text-align: center;
+        white-space: nowrap;
+        /* Prevent text wrapping */
+    }
+
+    .slider-container {
+        position: relative;
+        width: 1100px;
+        /* 800 and 450 */
+
+
+        height: 530px;
+        overflow: hidden;
+        /* Ensures no overflow */
+        margin: auto;
+
+    }
+
+    .slides {
+        display: flex;
+        width: 4000px;
+        /* 800px * 5 slides */
+        height: 100%;
+        transition: transform 0.5s ease-in-out;
+    }
+
+
+    .slide {
+        /* overflow: visible; */
+        /* position: relative; */
+        /* width: 800px; */
+        width: 875px;
+        /* height: 500px; */
+        /* Exact match to container */
+        height: 500px;
+        /* Exact match to container */
+        flex-shrink: 0;
+        flex-grow: 0;
+        /* Prevent growing */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        /* Prevent image overflow */
+        margin: 0;
+        /* Remove any margin */
+        padding: 0;
+        /* Remove any padding */
+    }
+
+    .ad {
+        position: absolute;
+        top: 79px;
+        left: 193px;
+        z-index: 5;
+        color: #e2e3ea;
+        text-align: left;
+    }
+
+    .ad1 {
+        position: absolute;
+        top: 79px;
+        left: 193px;
+        z-index: 5;
+        color: #e2e3ea;
+        text-align: left;
+    }
+
+    .ad2 {
+        position: absolute;
+        top: 110px;
+        left: 172px;
+        z-index: 5;
+        color: #e2e3ea;
+        text-align: left;
+    }
+
+    .ad3 {
+        position: absolute;
+        top: 142px;
+        left: 162px;
+        z-index: 5;
+        color: #e2e3ea;
+        text-align: left;
+    }
+
+    .ad4 {
+        position: absolute;
+        top: 172px;
+        left: 133px;
+        z-index: 5;
+        color: #e2e3ea;
+        text-align: left;
+    }
+
+    .ad5 {
+        position: absolute;
+        top: 215px;
+        left: 114px;
+        z-index: 5;
+        color: #e2e3ea;
+        text-align: left;
+    }
+
+    .ad7 {
+        position: absolute;
+        top: 252px;
+        left: 135px;
+        z-index: 5;
+        color: #e2e3ea;
+        text-align: left;
+    }
+
+    .ad9 {
+        position: absolute;
+        top: 329px;
+        left: -3px;
+        z-index: 5;
+        color: #e2e3ea;
+        text-align: left;
+    }
+
+    .ad11 {
+        position: absolute;
+        top: 388px;
+        left: -1px;
+        z-index: 5;
+        color: #e2e3ea;
+        text-align: left;
+    }
+
+
+    .adva {
+        position: absolute;
+        top: -4px;
+        /* Adjust as needed */
+        left: 8px;
+        /* Adjust as needed */
+        z-index: 5;
+        /* Above slides (z-index 0), below controls (z-index 10) */
+        color: #e2e3ea;
+        text-align: left;
+    }
+
+    .advaone {
+        position: absolute;
+        top: 20px;
+        /* Adjust as needed */
+        left: 2000px;
+        /* Adjust as needed */
+        z-index: 5;
+        /* Above slides (z-index 0), below controls (z-index 10) */
+        color: #e2e3ea;
+        text-align: left;
+    }
+
+    .advatwo {
+        position: absolute;
+        top: 20px;
+        /* Adjust as needed */
+        left: 2850px;
+        /* Adjust as needed */
+        z-index: 5;
+        /* Above slides (z-index 0), below controls (z-index 10) */
+        color: #e2e3ea;
+        text-align: left;
+    }
+
+    .advatwo h3 {
+        margin-top: 390px;
+    }
+
+    .advath {
+        position: absolute;
+        top: 20px;
+        /* Adjust as needed */
+        left: 1200px;
+        /* Adjust as needed */
+        z-index: 5;
+        /* Above slides (z-index 0), below controls (z-index 10) */
+        color: #e2e3ea;
+        text-align: left;
+    }
+
+    .advafour {
+        position: absolute;
+        top: 251px;
+        left: 3552px;
+        z-index: 5;
+        color: #e2e3ea;
+        text-align: left;
+        font-size: 30px;
+    }
+
+    #hh2 {
+        color: white;
+        font-size: 50px;
+    }
+
+    .advafiv h4 {
+        color: #a5a7ae;
+        font-size: 20;
+    }
+
+    p {
+        margin-top: 20px;
+        color: #a5a7ae;
+        font-size: 20;
+    }
+
+    .advafiv h3 {
+        margin-top: 20px;
+
+        color: #efeee9;
+        font-size: 24px;
+    }
+
+
+    .advafiv {
+        height: 530px;
+        width: 480px;
+        background-color: #040404;
+        position: absolute;
+        top: 0px;
+        left: 31px;
+        z-index: 5;
+        color: #e2e3ea;
+        text-align: left;
+        font-size: 30px;
+    }
+
+    .time {
+        position: absolute;
+        top: -12px;
+        left: -190px;
+        z-index: 5;
+        color: #e2e3ea;
+        text-align: left;
+        font-size: 45px;
+    }
+
+    .time1 {
+        position: absolute;
+        top: 96px;
+        left: -329px;
+        z-index: 5;
+        color: #e2e3ea;
+        text-align: left;
+        font-size: 52px
+    }
+
+    .heading {
+        font-size: 17px;
+        padding: 52px;
+        padding-left: 1px;
+    }
+
+    .state {
+        position: absolute;
+        top: -37px;
+        left: 15px;
+        z-index: 5;
+        color: #e2e3ea;
+        text-align: left;
+        font-size: 40px;
+    }
+
+
+    .state h2 {
+        white-space: nowrap;
+    }
+
+    .veg {
+        position: absolute;
+        top: 296px;
+        left: -189px;
+        z-index: 5;
+        color: #e2e3ea;
+        text-align: left;
+        font-size: 40px;
+    }
+
+    .slide img {
+        border-radius: 20px;
+        /* width: 1000px;
+        height: 550px; */
+        width: 800px;
+        /* Exact width */
+        height: 430px;
+        /* Exact height */
+        object-fit: cover;
+        /* Fills space without distortion */
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+    .image img {
+
+        left: 0px;
+        filter: blur(4px);
+        border-radius: 20px;
+
+        width: 1220px;
+
+        height: 430px;
+
+        object-fit: cover;
+
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+    .slide:nth-child(1) {
+        background: #040404;
+    }
+
+    .slide:nth-child(2) {
+        background: #060606;
+    }
+
+    .slide:nth-child(3) {
+        background: #070707;
+    }
+
+    .slide:nth-child(4) {
+        background: #070707;
+        ;
+    }
+
+    .slide:nth-child(5) {
+        background: #070707;
+    }
+
+    .controls {
+        background-color: #3b3939;
+        height: 21px;
+        width: 114px;
+        padding: 10px;
+        border-radius: 25px;
+        position: absolute;
+        bottom: 20px;
+        left: 53%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 10;
+    }
+
+    .cont {
+        background-color: #3b3939;
+        height: 20px;
+        width: 21px;
+        padding: 10px;
+        border-radius: 25px;
+        position: absolute;
+        bottom: 20px;
+        left: 62%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 10;
+    }
+
+    .dots {
+        display: flex;
+        gap: 10px;
+    }
+
+    .dot,
+    .play-button {
+        width: 12px;
+        height: 12px;
+        background: #888;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        text-align: center;
+        line-height: 12px;
+    }
+
+    .dot.active {
+        background: #fff;
+    }
+
+    .play-button {
+        background: white;
+        color: black;
+        font-weight: bold;
+    }
+
+    #item2 {
+        height: 630px;
+        /* position: relative;  */
+        /* background-image: url("{{ url_for('static', filename='back2.png') }}"); */
+        background-color: #161616;
+        /* display: flex; */
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    #hh {
+
+        padding-bottom: 40px;
+
+        text-shadow: #b7bede;
+        font-weight: 700;
+        color: #efeee9;
+        font-size: 50px;
+    }
+
+    #item3 {
+        height: 600px;
+    }
+
+    #item2 h1 {
+        text-shadow: 0 0 7px #f0d23d;
+        padding-bottom: 30px;
+
+        text-shadow: #b7bede;
+        font-weight: 700;
+        /* color: #c4a91e; */
+        color: #f9f9f9;
+        font-size: 40px;
+    }
+
+    /* Add all other styles */
+</style>
+
+<!-- JavaScript -->
+<script>
+    const slides = document.querySelector(".slides");
+    const dots = document.querySelectorAll(".dot");
+    const playButton = document.querySelector(".play-button");
+
+    let currentIndex = 0;
+    let hasPlayedOnce = false;
+    let interval;
+
+    function updateSlide(index) {
+        // Ensure index stays within bounds
+        if (index < 0 || index > 4) return;
+        slides.style.transform = `translateX(-${index * 800}px)`; // Move exactly 800px per slide
+        dots.forEach(dot => dot.classList.remove("active"));
+        dots[index].classList.add("active");
+        currentIndex = index; // Update currentIndex
+    }
+
+    function playSlides() {
+        if (hasPlayedOnce) return;
+        clearInterval(interval); // Clear any existing interval
+        interval = setInterval(() => {
+            if (currentIndex < 4) {
+                currentIndex++;
+                updateSlide(currentIndex);
+            } else {
+                clearInterval(interval);
+                hasPlayedOnce = true;
+                playButton.textContent = "⟳";
+            }
+        }, 2500); // Increased to 2500ms to allow transition to complete
+    }
+
+    function restartSlides() {
+        if (hasPlayedOnce) {
+            currentIndex = 0;
+            updateSlide(currentIndex);
+            hasPlayedOnce = false;
+            playButton.textContent = "▶";
+            playSlides();
+        }
+    }
+
+    dots.forEach(dot => {
+        dot.addEventListener("click", () => {
+            clearInterval(interval);
+            const newIndex = parseInt(dot.dataset.slide);
+            updateSlide(newIndex);
+        });
+    });
+
+    playButton.addEventListener("click", restartSlides);
+
+    // Start the slider on load
+    window.onload = () => {
+        updateSlide(0); // Ensure first slide is fully visible
+        playSlides();
+    };
+
+    // Optional scroll trigger (if still needed)
+    let hasStarted = false;
+    let scrollThreshold = 600;
+    window.addEventListener("scroll", function () {
+        let scrollPosition = window.scrollY || document.documentElement.scrollTop;
+        if (scrollPosition > scrollThreshold && !hasStarted) {
+            playSlides();
+            hasStarted = true;
+        }
+    });
+</script>
+
+<!-- Load Font Awesome -->
+<script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+{% endblock %}

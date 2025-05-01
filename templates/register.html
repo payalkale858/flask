@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='extended_beauty.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1>Register</h1>
+<form action="/register" method="POST">
+    <input type="text" name="name" placeholder="name" required>
+    <input type="email" name="user_email" placeholder="Email" required  autocomplete="off">
+    <input type="password" name="user_password" placeholder="Password" required   autocomplete="new-password">
+    <button type="submit">Register</button>
+</form>
+{% endblock %}
+ 
+

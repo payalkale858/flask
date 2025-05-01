@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Recipes by Country</title>
+</head>
+<body>
+    <h2>Select a Country to Get Recipes</h2>
+    <select id="countrySelect">
+        <option value="Indian">Indian</option>
+        <option value="Canadian">Canadian</option>
+        <option value="Chinese">Chinese</option>
+        <option value="French">French</option>
+        <option value="Mexican">Mexican</option>
+        <option value="Italian">Italian</option>
+        <option value="Thai">Thai</option>
+    </select>
+    <button class="btn">Get Recipes</button>
+    <div id="meals"></div>
+
+    <script>
+        let select = document.querySelector('#countrySelect');
+        let btn = document.querySelector('.btn');
+        let mealsDiv = document.querySelector('#meals');
+
+        const getMeals = async () => {
+            let country = select.value;  // Get selected country
+            let url = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`;
+
+            try {
+                let response = await fetch(url);
+                let data = await response.json();
+                
+                mealsDiv.innerHTML = ""; // Clear previous results
+
+                if (data.meals) {
+                    data.meals.forEach(meal => {
+                        let mealContainer = document.createElement("div");
+                        mealContainer.innerHTML = `
+                            <h3>${meal.strMeal}</h3>
+                            <img src="${meal.strMealThumb}" width="200">
+                        `;
+                        mealsDiv.appendChild(mealContainer);
+                    });
+                } else {
+                    mealsDiv.innerText = `No recipes found for ${country}!`;
+                }
+            } catch (error) {
+                mealsDiv.innerText = "Error fetching data.";
+                console.error(error);
+            }
+        };
+
+        btn.addEventListener('click', getMeals);
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}{% block head %} {{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='extended_beauty.css')}}">
+
+{% endblock %}
+{% block content %}
+
+
+
+    <h2>Your Favorite Recipes</h2>
+<ul>
+    {% for recipe in favorites %}
+        <li>{{ recipe.name }}</li>
+    {% else %}
+        <li>No favorite recipes yet.</li>
+    {% endfor %}
+</ul>
+
+    <h1>Welcome, {{ current_user.name }}!</h1>
+    
+    <h2>Your Favorite Recipes:</h2>
+    
+
+    {% if current_user.favorite_recipes %}
+        <ul>
+            {% for recipe in current_user.favorite_recipes %}
+            <li>{{ recipe.name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven't added any favorite recipes yet.</p>
+    {% endif %}
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+{% endblock %}
+

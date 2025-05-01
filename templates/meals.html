@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="containers">
+    <h2 id="country-heading">Recipes from {{ country }}</h2>
+</div>
+<div class="search-op">
+    <select id="countrySelect">
+        <option value="" selected disabled>-- Select a Country --</option>
+        <option value="Indian">Indian</option>
+        <option value="Canadian">Canadian</option>
+        <option value="Chinese">Chinese</option>
+        <option value="French">French</option>
+        <option value="Mexican">Mexican</option>
+        <option value="Italian">Italian</option>
+        <option value="Thai">Thai</option>
+    </select>
+    <button id="searchBtn"><i class="fas fa-search"></i></button>
+</div>
+{% if message %}
+    <p>{{ message }}</p>
+{% else %}
+    <div id="meals">
+        <div class="meals-container">
+            {% for meal in meals %}
+                <div class="meal-card">
+                    <h3>{{ meal.strMeal }}</h3>
+                    <a href="{{ url_for('meal_details', meal_id=meal.idMeal) }}">
+                        <img src="{{ meal.strMealThumb }}" width="200" class="meal-img">
+                    </a>
+                    <button class="fevor" data-id="{{ meal.idMeal }}">⭐ Add to Favorites</button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script>
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            let recipeId = e.target.dataset.id;
+            addToFavorites(recipeId);
+        });
+    });
+</script>
+{% endblock %} 
+
+
+
+
+
+
+
+
+
+

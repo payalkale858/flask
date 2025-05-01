@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Finder</title>
+    <style>
+        /* Reset and Basic Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #061b3d, #170505);
+            overflow: hidden;
+        }
+
+        /* Background Animation */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .background span {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-50px) scale(1.2);
+            }
+
+            100% {
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Random placement of bubbles */
+        .background span:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .background span:nth-child(2) {
+            top: 30%;
+            left: 70%;
+            animation-delay: 1s;
+        }
+
+        .background span:nth-child(3) {
+            top: 60%;
+            left: 50%;
+            animation-delay: 2s;
+        }
+
+        .background span:nth-child(4) {
+            top: 80%;
+            left: 30%;
+            animation-delay: 3s;
+        }
+
+        .background span:nth-child(5) {
+            top: 40%;
+            left: 80%;
+            animation-delay: 4s;
+        }
+
+        .background span:nth-child(6) {
+            top: 20%;
+            left: 80%;
+            animation-delay: 5s;
+        }
+
+        /* Main Content */
+        .content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: glow 3s infinite alternate;
+        }
+
+        .content p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            /* Gap between paragraph and button */
+            animation: glow 3s infinite alternate;
+            /* Glow effect forever */
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #f6443b, 0 0 20px #1ebb3a, 0 0 30px #ec1435;
+            }
+
+            to {
+                text-shadow: 0 0 30px #5833ea, 0 0 50px #d8267c, 0 0 70px #d3491b;
+            }
+        }
+
+        /* Button  */
+        .button {
+            margin-top: 20px;
+            /* Spacing between paragraph and button */
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: white;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+            text-decoration: none;
+            /* Removes underline for link */
+            display: inline-block;
+            /* Ensures proper alignment */
+        }
+
+        .button:hover {
+            background: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Bubbles -->
+    <div class="background">
+        <!-- <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span> -->
+        <span class="dot" data-slide="0"></span>
+        <span class="dot" data-slide="1"></span>
+        <span class="dot" data-slide="2"></span>
+        <span class="dot" data-slide="3"></span>
+        <span class="dot" data-slide="4"></span>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>Welcome to Recipe Finder</h1>
+        <p>Your gateway to delicious Recipes</p>
+        <!-- "Turn what you have into what you love. -->
+        <!-- cook what you have ,love what you make -->
+        <!-- <a href="two.html" class="button">Get Started</a> -->
+        <a href="{{ url_for('two') }}" class="button">Get Started</a>
+
+    </div>
+</body>
+
+</html>  

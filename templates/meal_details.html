@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+<div class="meal-detail">
+
+    {% if meal %}
+    <div class="meal-popup-content">
+        <h2>{{ meal.strMeal }}</h2>
+        <img src="{{ meal.strMealThumb }}" width="800">
+
+
+
+        <h4>Ingredients:</h4>
+        <ul>
+            {% for i in range(1, 21) %}
+            {% set ingredient = meal['strIngredient' ~ i] %}
+            {% set measure = meal['strMeasure' ~ i] %}
+            {% if ingredient and ingredient.strip() %}
+            <li>{{ measure }} {{ ingredient }}</li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+
+        <h4>Instructions:</h4>
+        <p>{{ meal.strInstructions }}</p>
+        {% else %}
+        <p>{{ message }}</p>
+        {% endif %}
+
+        <a href="{{ url_for('get_meals',country='Indian' ) }}">Back to meals</a>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+<!-- from app import app, db, User, Recipe
+>>>             
+>>> with app.app_context():  
+...     users = User.query.all()                                                                                                    
+...     if users:
+...         for user in users:                     
+...             print(f"ID: {user.id}, Name: {user.name}, Email: {user.email}, Favorites: {[r.name for r in user.favorite_recipes]}")
+...     users = User.query.all()
+...     if users:
+...         for user in users:
+...             print(f"ID: {user.id}, Name: {user.name}, Email: {user.email}, Favorites: {[r.name for r in user.favorite_recipes]}")
+...     if users:
+...         for user in users:
+...             print(f"ID: {user.id}, Name: {user.name}, Email: {user.email}, Favorites: {[r.name for r in user.favorite_recipes]}")
+...             print(f"ID: {user.id}, Name: {user.name}, Email: {user.email}, Favorites: {[r.name for r in user.favorite_recipes]}")
+...     else:
+...         print("No users found in the database.") -->
