@@ -1,17 +1,169 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Search</title>
     <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .recipeContainer {
+            display: none;
+            /* hidden initially */
+            padding: 20px;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        /*     
+    .recipe-results {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    } */
+        .recipe-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-items: center;
+        }
+
+
+        .recipe-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 250px;
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.2s;
+        }
+
+
+        .recipe-card:hover {
+            transform: scale(1.03);
+        }
+
+        .recipe-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .recipe-card h3 {
+            margin: 10px 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .view-recipe-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .view-recipe-btn:hover {
+            background-color: #218838;
+        }
+
+        #goBackButton {
+            margin-bottom: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #goBackButton:hover {
+            background-color: #0056b3;
+        }
+
+        #goBackButton {
+            position: absolute;
+            top: 115px;
+            right: 10px;
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: #f0d23d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .close-btn {
+            padding-left: 5px;
+            padding-bottom: 12px;
+            background: #595647;
+            width: 20px;
+            height: 15px;
+            position: absolute;
+            top: 118px;
+            right: 15px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        #goBackButton:hover {
+            background-color: #d32f2f;
+        }
+
+        #recipeTitle {
+            margin-top: 85px;
+            margin-bottom: 20px;
+
+        }
+
+        #recipeImage {
+            margin-top: 15;
+            height: 300px;
+        }
+
+        #recipeModal {
+            height: 1313px;
+            background-color: black;
+            width: 100vw;
+        }
+
+        #recipeModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow-y: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 40px;
+            box-sizing: border-box;
+            z-index: 999;
+        }
+
+        #recipeModal.show {
+            display: block;
+            /* this will override 'display: none' */
+        }
+    </style>
 </head>
+
 <body>
 
     <div class="recipeContainer" style="display: none;">
         <div class="recipe-results"></div>
     </div>
-    
+
     <div id="recipeModal" class="modal">
         <span class="close-btn">&times;</span>
         <h2 id="recipeTitle"></h2>
@@ -19,12 +171,8 @@
         <ul id="recipeIngredients"></ul>
         <p id="recipeInstructions"></p>
     </div>
-    
+
 
     <script src="{{ url_for('static', filename='script_2.js') }}"></script>
 </body>
-</html>
-
-
-
-    
+{% endblock %}

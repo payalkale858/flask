@@ -1,6 +1,7 @@
 # pip install flask-sqlalchemy
 # are used to make changes in database through python
 import requests
+import json
 from flask import jsonify
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask import Flask, render_template, redirect, url_for, request, flash,session
@@ -272,15 +273,50 @@ def meal_details(meal_id):
 
 
 
-@app.route('/nutrition_info')
-def nutrition_info():
-    return render_template('nutrition.html')
+# @app.route('/nutrition_info')
+# def nutrition_info():
+#     return render_template('nutrition.html')
 
 @app.route('/about')
 def about():
     return render_template('about.html')
 
 
+
+@app.route("/nutrition_info", methods=["GET", "POST"])
+def nutrition_info():
+    if request.method == "POST":
+        ingredient = request.form.get("ingredientInput", "").strip().lower()
+        if not ingredient:
+            return render_template("nutrition_info.html", meals=None, message="Please enter an ingredient.")
+
+        url = f"https://www.themealdb.com/api/json/v1/1/filter.php?i={ingredient}"
+
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            data = response.json()
+            meals = data.get("meals")
+            return render_template("nutrition_info.html", meals=meals, message=None if meals else "No recipes found.")
+        except Exception as e:
+            return render_template("nutrition_info.html", meals=None, message=f"Error: {str(e)}")
+    
+    # Handle GET request: show empty form
+    return render_template("nutrition_info.html", meals=None, message=None)
+
+
+
+# @app.route('/recipe/<int:recipe_id>')
+# def recipe_detail(recipe_id):
+#     try:
+#         url = f"https://api.spoonacular.com/recipes/{recipe_id}/information"
+#         params = {'apiKey': '7c16e0c3e3044e6f9d38cb3592abe29e'}
+#         response = requests.get(url, params=params)
+#         response.raise_for_status()
+#         data = response.json()
+#         return render_template('recipe_detail.html', recipe=data)
+#     except requests.RequestException as e:
+#         return f"Error: {str(e)}"
 
 
 if __name__ == '__main__':

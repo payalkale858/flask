@@ -1,1 +1,1 @@
-app = Flask(__name__)
+'/nutrition_info'

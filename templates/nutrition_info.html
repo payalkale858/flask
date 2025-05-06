@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% block content %}
+    <style>
+        .recipe-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+        }
+        #recipeContainer {
+            display: none;
+        }
+        #goBackButton {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Recipes by Nutrition</h1>
+    <div id="mainContent">
+        <h2>Find Recipes</h2>
+        <form id="recipeForm">
+            <input type="text" id="ingredientInput" name="ingredientInput" placeholder="Enter ingredients" required>
+            
+            <label><input type="checkbox" name="filters" value="high_protein"> High Protein</label>
+            <label><input type="checkbox" name="filters" value="low_carb"> Low Carb</label>
+            <label><input type="checkbox" name="filters" value="low_sodium"> Low Sodium</label>
+            <label><input type="checkbox" name="filters" value="keto"> Keto</label>
+            <label><input type="checkbox" name="filters" value="vegan"> Vegan</label>
+            <label><input type="checkbox" name="filters" value="gluten_free"> Gluten-Free</label>
+
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div id="recipeContainer">
+        <div id="recipeResults"></div>
+    </div>
+   
+    <div id="recipeDetail" style="display: none;"></div>
+
+    <script>
+        document.getElementById("recipeForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            fetchRecipes();
+        });
+
+        async function fetchRecipes() {
+            const ingredientInput = document.getElementById("ingredientInput");
+            const recipeResults = document.getElementById("recipeResults");
+            const mainContent = document.getElementById("mainContent");
+            const recipeContainer = document.getElementById("recipeContainer");
+
+            const searchQuery = ingredientInput.value.trim();
+            if (!searchQuery) {
+                recipeResults.innerHTML = "<p>Please enter an ingredient or recipe name.</p>";
+                return;
+            }
+
+            const filters = Array.from(document.querySelectorAll('input[name="filters"]:checked')).map(el => el.value);
+            const params = new URLSearchParams({
+                query: searchQuery,
+                number: 10,
+                apiKey: '7c16e0c3e3044e6f9d38cb3592abe29e',  // Ensure no space!
+                addRecipeInformation: 'false'
+            });
+
+            if (filters.includes("high_protein")) params.append("minProtein", "20");
+            if (filters.includes("low_carb")) params.append("maxCarbs", "15");
+            if (filters.includes("low_sodium")) params.append("maxSodium", "300");
+            if (filters.includes("keto")) params.append("diet", "ketogenic");
+            if (filters.includes("vegan")) params.append("diet", "vegan");
+            if (filters.includes("gluten_free")) params.append("intolerances", "gluten");
+
+            const url = `https://api.spoonacular.com/recipes/complexSearch?${params.toString()}`;
+
+            try {
+                recipeResults.innerHTML = "<p>Loading...</p>";
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (!data.results || data.results.length === 0) {
+                    recipeResults.innerHTML = `<p>No recipes found for "${searchQuery}".</p>`;
+                    return;
+                }
+
+                mainContent.style.display = "none";
+                recipeContainer.style.display = "block";
+
+                displayRecipesFromSpoonacular(data.results);
+            } catch (error) {
+                console.error('Error fetching recipes:', error);
+                recipeResults.innerHTML = `<p>Failed to fetch recipes: ${error.message}</p>`;
+            }
+        }
+
+        function displayRecipesFromSpoonacular(recipes) {
+            const recipeResults = document.getElementById("recipeResults");
+            recipeResults.innerHTML = `<button id="goBackButton">Go Back</button>`;
+
+            recipes.forEach((recipe) => {
+                const recipeCard = document.createElement("div");
+                recipeCard.classList.add("recipe-card");
+
+                recipeCard.innerHTML = `
+                    <img src="${recipe.image}" alt="${recipe.title}" width="180">
+                    <h3>${recipe.title}</h3>
+                    <button class="view-details-btn" data-id="${recipe.id}">View Recipe</button>
+                `;
+
+                recipeResults.appendChild(recipeCard);
+            });
+
+            document.querySelectorAll('.view-details-btn').forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    const recipeId = e.target.getAttribute('data-id');
+                    await fetchRecipeDetails(recipeId);
+                });
+            });
+
+            document.getElementById("goBackButton").addEventListener("click", goBackToResults);
+        }
+
+        async function fetchRecipeDetails(recipeId) {
+            const url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=7c16e0c3e3044e6f9d38cb3592abe29e&includeNutrition=true`;
+
+            try {
+                const response = await fetch(url);
+                const recipe = await response.json();
+
+                const detailSection = document.getElementById("recipeDetail");
+                detailSection.innerHTML = `
+                    <h2>${recipe.title}</h2>
+                    <img src="${recipe.image}" alt="${recipe.title}" width="200">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                        ${recipe.extendedIngredients.map(ing => `<li>${ing.original}</li>`).join('')}
+                    </ul>
+                    <h3>Instructions:</h3>
+                    <p>${recipe.instructions || 'No instructions provided.'}</p>
+                    <h3>Nutrition:</h3>
+                    <ul>
+                        ${recipe.nutrition.nutrients.map(n => `<li>${n.title}: ${n.amount}${n.unit}</li>`).join('')}
+                    </ul>
+                    <button onclick="goBackToResults()">Go Back</button>
+                `;
+
+                document.getElementById("recipeResults").style.display = "none";
+                detailSection.style.display = "block";
+            } catch (error) {
+                console.error("Error fetching recipe details:", error);
+            }
+        }
+
+        function goBackToResults() {
+            const recipeDetail = document.getElementById("recipeDetail");
+            recipeDetail.style.display = "none";
+            recipeDetail.innerHTML = ""; // Clear the detailed content
+            const mainContent = document.getElementById("mainContent");
+            const recipeContainer = document.getElementById("recipeContainer");
+            mainContent.style.display = "block";
+            recipeContainer.style.display = "none";
+        }
+    </script>
+</body>
+{% endblock %}
+

@@ -15,12 +15,19 @@ document.addEventListener("DOMContentLoaded", () => {
     if (searchQuery) {
         fetchRecipes(searchQuery);  // Pass value directly
     }
+    // Show the modal
+    recipeModal.classList.add("show");
 
+    // Close button
     if (closeBtn) {
         closeBtn.addEventListener("click", () => {
             recipeModal.classList.remove("show");
         });
     }
+
+
+
+
 
     setupImageClickListeners();
 });
@@ -38,7 +45,7 @@ async function fetchRecipes(query) {
     }
 
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(searchQuery)}`;
-    
+
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -50,7 +57,7 @@ async function fetchRecipes(query) {
 
         mainContent?.style && (mainContent.style.display = "none");
         recipeContainer.style.display = "block";
-        recipeResults.style.display = "block";
+        // recipeResults.style.display = "block";
 
         displayRecipes(data.meals);
     } catch (error) {
@@ -117,11 +124,34 @@ async function fetchRecipeDetails(mealId) {
 }
 
 // Go Back to Main
+// function goBackToMain() {
+//     if (mainContent) mainContent.style.display = "block";
+//     if (recipeContainer) recipeContainer.style.display = "none";
+//     recipeResults.innerHTML = "";
+// }
+
+// Go Back to Main
 function goBackToMain() {
-    if (mainContent) mainContent.style.display = "block";
-    if (recipeContainer) recipeContainer.style.display = "none";
+    // Show the main/home content
+    if (mainContent) {
+        mainContent.style.display = "block"; // Ensure this is the home content container
+    }
+
+    // Hide the recipe results container
+    if (recipeContainer) {
+        recipeContainer.style.display = "none"; // Ensure this is the recipe results container
+    }
+
+    // Clear the recipe results content
     recipeResults.innerHTML = "";
+
+    // Optionally clear the search input
+    if (ingredientInput) {
+        ingredientInput.value = ""; // Clear the ingredient input field
+    }
 }
+
+
 
 // Setup Image Click Listeners
 function setupImageClickListeners() {

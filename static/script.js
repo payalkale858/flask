@@ -573,6 +573,8 @@ function addToFavorites(recipeId) {
 }
 
 
+
+
 // document.addEventListener("DOMContentLoaded", () => {
 //     let select = document.querySelector("#countrySelect");
 //     let btn = document.getElementById("searchBtn");
