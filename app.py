@@ -218,22 +218,6 @@ def results():
 def home():
    return render_template('index.html')
 
-# @app.route('/two')
-# def two():
-#     return render_template('two.html')
-# @app.route('/meals')
-# def get_meals(country):
-#     url = f"https://www.themealdb.com/api/json/v1/1/filter.php?a={country}"
-#     response = requests.get(url)
-#     data = response.json()
-
-#     if data["meals"]:
-#         return render_template('meals.html', meals=data["meals"], country=country)
-#     else:
-#         return render_template('meals.html', meals=[], country=country, message="No recipes found!")
-    
-
-
 
 
 @app.route('/meals')
@@ -273,10 +257,6 @@ def meal_details(meal_id):
 
 
 
-# @app.route('/nutrition_info')
-# def nutrition_info():
-#     return render_template('nutrition.html')
-
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -304,19 +284,6 @@ def nutrition_info():
     # Handle GET request: show empty form
     return render_template("nutrition_info.html", meals=None, message=None)
 
-
-
-# @app.route('/recipe/<int:recipe_id>')
-# def recipe_detail(recipe_id):
-#     try:
-#         url = f"https://api.spoonacular.com/recipes/{recipe_id}/information"
-#         params = {'apiKey': '7c16e0c3e3044e6f9d38cb3592abe29e'}
-#         response = requests.get(url, params=params)
-#         response.raise_for_status()
-#         data = response.json()
-#         return render_template('recipe_detail.html', recipe=data)
-#     except requests.RequestException as e:
-#         return f"Error: {str(e)}"
 
 
 if __name__ == '__main__':
