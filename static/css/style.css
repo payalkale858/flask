@@ -110,9 +110,17 @@ ul {
 i {
     margin: 3px;
 }
-
+.register{
+    background-color: #161515;
+    color: #ddd;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    align-self: flex-start;
+}
 .login {
-    background-color: #db3813;
+    margin-right: -200px;
+    background-color: #161616;
     color: #ddd;
     padding: 8px 16px;
     text-decoration: none;
@@ -396,6 +404,100 @@ p {
 a {
 
     color: #070707;
+}
+
+
+
+
+/* --- Container for the whole page content --- */
+.cont {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Add some padding around the form */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+/* --- Login Form Container --- */
+.log {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    max-width: 450px; /* Max width for the form */
+    width: 100%; /* Ensure it takes full width up to max-width */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+    text-align: center; /* Center the heading and button */
+}
+
+/* --- Form Heading --- */
+.log h2 {
+    color: #007bff;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 2.2em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+/* --- Form Groups (Labels and Inputs) --- */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left; /* Align labels and inputs to the left */
+}
+
+.form-group label {
+    display: block; /* Make labels take full width */
+    margin-bottom: 8px;
+    font-weight: 500;
+    color:#343a40;
+    font-size: 0.95em;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #343a40;
+    background-color:#f8f9fa;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box; /* Crucial for consistent width */
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Light blue shadow on focus */
+    outline: none; /* Remove default outline */
+}
+
+
+
+/* --- Submit Button --- */
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    width: 100%; /* Make button full width */
+    margin-top: 20px; /* Space above the button */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:active {
+    transform: translateY(0); /* Return to original position on click */
+    box-shadow: none;
 }
 
 
