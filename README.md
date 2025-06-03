@@ -29,3 +29,27 @@ A web application that helps users discover Indian recipes based on nutritional 
 git clone https://github.com/payalkale858/recipe-finder-app.git
 cd recipe-finder-app
 python app.py
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+![Home Page](images/homepage.png)
+
+### 🍽️ Recipe Results by Nutrition
+![Recipe by Nutrition](images/recipe-by-nutrition.png)
+
+### 🌍 Recipes by Country
+![Recipe by Country](images/recipe-by-country.png)
+
+
+
+
+
+
+## 📬 Contact
+
+Payal kale  
+💼 [LinkedIn](httpswww.linkedin.cominyour-linkedin-url)  
+📧 Email kalepayal53@gmail.com  
+📍 Location maharashtra, India  
+
