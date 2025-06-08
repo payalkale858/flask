@@ -14,9 +14,6 @@ app.config['SECRET_KEY'] = 'your_secret_key'  # Secret key for session managemen
 db = SQLAlchemy(app)
 
 
-
-
-
 user_favorites = db.Table('user_favorites',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
     db.Column('recipe_id', db.Integer, db.ForeignKey('recipe.id'), primary_key=True)
@@ -74,8 +71,8 @@ def login():
            return redirect(url_for('profile'))
         
         # login_user(user,remember=remember)
-        print('Login Unsuccessful. Please check username and password', 'danger')
-        flash('Login Unsuccessful. Please check username and password', 'danger')
+    print('Login Unsuccessful. Please check username and password', 'danger')
+    flash('Login Unsuccessful. Please check username and password', 'danger')
         
     return render_template('login.html')
 

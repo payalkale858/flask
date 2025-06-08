@@ -44,8 +44,6 @@ python app.py
 
 
 
-
-
 ## 📬 Contact
 
 Payal kale  
